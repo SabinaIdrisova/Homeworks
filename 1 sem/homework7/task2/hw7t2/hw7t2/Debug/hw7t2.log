@@ -1,0 +1,37 @@
+﻿Построение начато 05.12.2011 3:12:00.
+     1>Проект "c:\Users\1\documents\visual studio 2010\Projects\hw7t2\hw7t2\hw7t2.vcxproj" в узле 2 (целевые объекты build).
+     1>InitializeBuildStatus:
+         Создание "Debug\hw7t2.unsuccessfulbuild", так как было задано "AlwaysCreate".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp tree.cpp
+         tree.cpp
+         main.cpp
+     1>c:\users\1\documents\visual studio 2010\projects\hw7t2\hw7t2\main.cpp(14): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(304): см. объявление "scanf"
+     1>c:\users\1\documents\visual studio 2010\projects\hw7t2\hw7t2\main.cpp(18): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(304): см. объявление "scanf"
+     1>c:\users\1\documents\visual studio 2010\projects\hw7t2\hw7t2\main.cpp(24): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(304): см. объявление "scanf"
+     1>c:\users\1\documents\visual studio 2010\projects\hw7t2\hw7t2\main.cpp(30): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(304): см. объявление "scanf"
+         Создание кода...
+       ManifestResourceCompile:
+         Для всех выходных данных обновления не требуется.
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"c:\users\1\documents\visual studio 2010\Projects\hw7t2\Debug\hw7t2.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\hw7t2.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"c:\users\1\documents\visual studio 2010\Projects\hw7t2\Debug\hw7t2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"c:\users\1\documents\visual studio 2010\Projects\hw7t2\Debug\hw7t2.lib" /MACHINE:X86 Debug\hw7t2.exe.embed.manifest.res
+         Debug\main.obj
+         Debug\tree.obj
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\hw7t2.exe.embed.manifest" /manifest Debug\hw7t2.exe.intermediate.manifest
+         Для всех выходных данных обновления не требуется.
+       LinkEmbedManifest:
+         Для всех выходных данных обновления не требуется.
+         hw7t2.vcxproj -> c:\users\1\documents\visual studio 2010\Projects\hw7t2\Debug\hw7t2.exe
+       FinalizeBuildStatus:
+         Файл "Debug\hw7t2.unsuccessfulbuild" удаляется.
+         Обращение к "Debug\hw7t2.lastbuildstate".
+     1>Построение проекта "c:\Users\1\documents\visual studio 2010\Projects\hw7t2\hw7t2\hw7t2.vcxproj" завершено (целевые объекты build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:01.64
