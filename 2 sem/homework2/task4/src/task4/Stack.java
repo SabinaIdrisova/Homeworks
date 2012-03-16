@@ -9,8 +9,8 @@ public class Stack {
 	}
 	
 	/**
-	 * Добавление элемента
-	 * @param value значение добавляемого элемента
+	 * Add element
+	 * @param value element value
 	 */
 	
 	public void push(int value) {
@@ -21,7 +21,7 @@ public class Stack {
 	}
 	
 	/**
-	 * Удаление элемента
+	 * Remove element
 	 */
 	
 	public int pop() {
@@ -36,7 +36,7 @@ public class Stack {
 	}
 	
 	/**
-	 * Возвращает true, если стек пустой; false, если стек не пустой
+	 * @return true if stack is empty, false if stack is not empty
 	 */
 	
 	public boolean isEmpty() {
@@ -45,7 +45,7 @@ public class Stack {
 	
 	/**
 	 * 
-	 * Возвращает значение вершины стека, если стек не пуст; -1, в если стек пуст
+	 * @return top value if stack is not empty, -1 if stack is empty
 	 */
 	
 	public int top() {

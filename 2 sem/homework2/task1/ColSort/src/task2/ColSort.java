@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class ColSort {
 	
     /**
-     * Заполнение двухмерного массива случайными числами
-     * @param array массив для заполнения
+     * Fill an array with random numbers
+     * @param array array to fill
      */
 	
     private static void initArray(int[][] array) {
@@ -18,8 +18,8 @@ public class ColSort {
     }
 	
     /**
-     * Печать двухмерного массива
-     * @param array массив для печати
+     * Print an array
+     * @param array array to print
      */
     
     private static void printArray(int[][] array) {
@@ -31,11 +31,11 @@ public class ColSort {
     }
     
     /**
-     * Перемена мест двух элементов массива из разных столбцов, но одной строки
-     * @param array массив
-     * @param col1 номер столбца первого элемента
-     * @param col2 номер столбца второго элемента
-     * @param row номер строки
+     * Change locations of two elements of array of different columns and one row
+     * @param array array
+     * @param col1 column number of first element
+     * @param col2 column number of second element
+     * @param row row number
      */
     
     public static void swap(int[][] array, int col1, int col2, int row) {
@@ -45,8 +45,8 @@ public class ColSort {
     }
 	
     /**
-     * Сортировка столбцов массива по возрастанию
-     * @param array массив
+     * Sort columns of array in ascending order
+     * @param array array
      */
     
     public static void sort(int[][] array) {

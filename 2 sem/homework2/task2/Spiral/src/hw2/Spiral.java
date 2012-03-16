@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class Spiral {
 
 	/**
-	 * Заполнение двухмерного массива случайными числами
-	 * @param array массив для заполнения
+	 * Fill array witn random numbers
+	 * @param array array to fill
 	 */
 	
 	private static void initArray(int[][] array) {
@@ -18,8 +18,8 @@ public class Spiral {
 	}
 	
 	/**
-	 * Печать двухмерного массива
-	 * @param array массив для печати
+	 * Print array
+	 * @param array array to print
 	 */
 	
 	private static void printArray(int[][] array) {
@@ -31,10 +31,10 @@ public class Spiral {
 	}
 	
 	/**
-	 * Вывод элементов двухмерного массива по спирали, начиная с центра
-	 * @param array массив
-	 * @param n количество элементов массива
-	 * @param result одномерный массив, в который записываются элементы
+	 * Output array elements in a spiral, starting from the center
+	 * @param array array
+	 * @param n array size
+	 * @param result one-dimensional array, where will write the elements
 	 */
 	
 	public static void spiral(int[][] array, int n, int[] result) {
