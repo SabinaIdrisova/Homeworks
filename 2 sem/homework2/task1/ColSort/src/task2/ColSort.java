@@ -11,7 +11,7 @@ public class ColSort {
     private static void initArray(int[][] array) {
         for (int i = 0; i < array.length; i++) {
     	    for (int j = 0; j < array[i].length; j++) {
-    		    array[i][j] = (int)(Math.random() * 10);
+    		array[i][j] = (int)(Math.random() * 10);
     	    }
     	}
     }
@@ -23,7 +23,7 @@ public class ColSort {
     private static void printArray(int[][] array) {
         for (int i = 0; i < array.length; i++) {
     	    for (int j = 0; j < array[i].length; j++)
-    		    System.out.print(array[i][j] + " ");
+    		System.out.print(array[i][j] + " ");
     	    System.out.println();	
         }
     } 
@@ -48,10 +48,10 @@ public class ColSort {
     public static void sort(int[][] array) {
         for (int i = 0; i < array[0].length; i++) {
     	    for (int j = i + 1; j < array[0].length; j++) {
-    		    if (array[0][i] > array[0][j]) {
+    		if (array[0][i] > array[0][j]) {
     	            for (int k = 0; k < array.length; k++)
-    			        swap(array, i, j, k);
-    		    }	
+    			swap(array, i, j, k);
+    	        }	
     	    }
         }
     }
