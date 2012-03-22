@@ -1,12 +1,7 @@
 package task3;
 
 public class List {
-    private ListElement head;
-	
-    private ListElement tail;
-	
-    private int count;
-	
+    
     public List() {
         count = 0;
 	head = null;
@@ -17,20 +12,15 @@ public class List {
      * Добавление элемента в начало списка
      * @param value значение добавляемого элемента 
      */
-	
     public void addToStart(int value) {
         if (count == 0) {
-            ListElement newEl = new ListElement();
-            newEl.next = null;
-            newEl.value = value;
+            ListElement newEl = new ListElement(value, null);
             head = newEl;
             tail = newEl;
             count++;
         }
         else {
-           ListElement newEl = new ListElement();
-           newEl.next = head;
-           newEl.value = value;
+           ListElement newEl = new ListElement(value, head);
            head = newEl;
            count++;
         }
@@ -40,20 +30,15 @@ public class List {
      * Добавление элемента в конец списка
      * @param value значение добавляемого элемента
      */
-	
     public void addToEnd(int value) {
 	if (count == 0) {
-	    ListElement newEl = new ListElement();
-            newEl.next = null;
-	    newEl.value = value;
+	    ListElement newEl = new ListElement(value, null);
 	    head = newEl;
 	    tail = newEl;
 	    count++;
 	}
 	else {
-	    ListElement newEl = new ListElement();
-            newEl.value = value;
-	    newEl.next = null;
+	    ListElement newEl = new ListElement(value, null);
 	    tail.next = newEl;
 	    tail = newEl;
 	    count++;
@@ -65,7 +50,6 @@ public class List {
      * @param value значение добавляемого элемента
      * @param position позиция, на которую нужно добавить
      */
-	
     public void insert(int value, ListElement position) {
 	if (position == head) {
 	    addToStart(value);         
@@ -75,10 +59,8 @@ public class List {
 	        addToEnd(value);
 	    }
 	    else {
-		    ListElement temp = new ListElement();
-		    temp.value = position.value;
+		    ListElement temp = new ListElement(position.value, position.next);
 		    position.value = value;
-		    temp.next = position.next;
 		    position.next = temp;
 		    count++;
 	    }	
@@ -88,7 +70,6 @@ public class List {
      * Удаление элемента
      * @param position позиция элемента, который необходимо удалить
      */
-	
     public void deleteElement(ListElement position) {
         if (count != 1) {
 	    if (position != head && position != tail) {
@@ -123,7 +104,6 @@ public class List {
     /**
      * Удаление списка
      */
-	
     public void deleteList() {
 	head = null;
 	tail = null;
@@ -133,7 +113,6 @@ public class List {
     /**
      * Длина списка
      */
-	
     public int lengthOfList() {
 	return count;
     }
@@ -141,7 +120,6 @@ public class List {
     /**
      * Печать списка
      */
- 	
     public void printList() {
         if (head == null) {
 	    System.out.println("No list!");
@@ -160,7 +138,6 @@ public class List {
      * 
      * @return первый элемент списка
      */
-	
     public ListElement firstPosition() {
 	return head;
     }
@@ -169,7 +146,6 @@ public class List {
      * 
      * @return последний элемент списка
      */
-	
     public ListElement lastPosition() {
 	return tail;
     }
@@ -179,7 +155,6 @@ public class List {
      * @param position позиция элемента
      * @return следующий элемент
      */
-	
     public ListElement nextPosition(ListElement position) {
 	return position.next;
     }
@@ -189,7 +164,6 @@ public class List {
       * @param position позиция элемента
       * @return предыдущий элемент
       */
-	
     public ListElement prevPosition(ListElement position) {
 	ListElement cur = head;
 	while (cur.next != position) {
@@ -201,4 +175,10 @@ public class List {
     public int getValue(ListElement position) {
 	return position.value;
     }
+    
+    private ListElement head;
+	
+    private ListElement tail;
+	
+    private int count;
 }
