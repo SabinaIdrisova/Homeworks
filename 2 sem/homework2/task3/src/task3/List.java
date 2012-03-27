@@ -39,7 +39,7 @@ public class List {
 	}
 	else {
 	    ListElement newEl = new ListElement(value, null);
-	    tail.next = newEl;
+	    tail.setNext(newEl);
 	    tail = newEl;
 	    count++;
 	}	
@@ -59,9 +59,9 @@ public class List {
 	        addToEnd(value);
 	    }
 	    else {
-		    ListElement temp = new ListElement(position.value, position.next);
-		    position.value = value;
-		    position.next = temp;
+		    ListElement temp = new ListElement(position.getValue(), position.getNext());
+		    position.setValue(value);
+		    position.setNext(temp);
 		    count++;
 	    }	
     }
@@ -73,25 +73,25 @@ public class List {
     public void deleteElement(ListElement position) {
         if (count != 1) {
 	    if (position != head && position != tail) {
-		prevPosition(position).next = position.next;
-		position.value = position.next.value;
-		position.next = position.next.next;
+		prevPosition(position).setNext(position.getNext());
+		position.setValue(nextPosition(position).getValue());
+		position.setNext(nextPosition(position).getNext());
 		count--;
 	    }
 	    else
 		if (position == head) {
-		    position.value = position.next.value;
-		    position.next = position.next.next;
+		    position.setValue(nextPosition(position).getValue());
+		    position.setNext(nextPosition(position).getNext());
 		    count--;
 	        }
 		else {
                     if (count != 2) {
-	                position.value = prevPosition(position).value;
-			prevPosition(prevPosition(position)).next = position;
+	                position.setValue(prevPosition(position).getValue());
+			prevPosition(prevPosition(position)).setNext(position);
 			count--;
                     }
                     else {
-                        position.value = prevPosition(position).value;
+                        position.setValue(prevPosition(position).getValue());
                         deleteElement(prevPosition(position));
                     }
 		}
@@ -127,8 +127,8 @@ public class List {
 	else {
 	    ListElement printEl = head;
 	    while (printEl != null) {
-	        System.out.print(printEl.value + " ");
-	        printEl = printEl.next;
+	        System.out.print(printEl.getValue() + " ");
+	        printEl = printEl.getNext();
 	    }
 	    System.out.println();
 	}
@@ -156,7 +156,7 @@ public class List {
      * @return следующий элемент
      */
     public ListElement nextPosition(ListElement position) {
-	return position.next;
+	return position.getNext();
     }
 	
     /**
@@ -166,14 +166,14 @@ public class List {
       */
     public ListElement prevPosition(ListElement position) {
 	ListElement cur = head;
-	while (cur.next != position) {
-	    cur = cur.next;
+	while (cur.getNext() != position) {
+	    cur = cur.getNext();
 	}
 	return cur;
     }
 	
     public int getValue(ListElement position) {
-	return position.value;
+	return position.getValue();
     }
     
     private ListElement head;
