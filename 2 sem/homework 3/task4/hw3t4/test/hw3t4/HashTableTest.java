@@ -1,4 +1,3 @@
-
 package hw3t4;
 
 import org.junit.*;
@@ -32,10 +31,14 @@ public class HashTableTest {
     @Test
     public void testAddEl() {
         HashFunction1 function = new HashFunction1();
-        HashTable hash = new HashTable(function);
+        HashTable hash = new HashTable();
+        hash.setHashFunction(function);
         String word = "ok";
         hash.addEl(word);
-        assertTrue(hash.findElement(word));
+        assertTrue(hash.findEl(word));
+        HashFunction2 function2 = new HashFunction2();
+        hash.setHashFunction(function2);
+        assertFalse(hash.findEl("hoho"));
     }
 
     /**
@@ -44,21 +47,31 @@ public class HashTableTest {
     @Test
     public void testDelEl() {
        HashFunction1 function = new HashFunction1();
-       HashTable hash = new HashTable(function);
+       HashTable hash = new HashTable();
+       hash.setHashFunction(function);
        String word = "ok";
        hash.addEl(word);
        hash.delEl(word);
-       assertFalse(hash.findElement(word));
+       assertFalse(hash.findEl(word));
+       HashFunction2 function2 = new HashFunction2();
+       hash.setHashFunction(function2);
+       hash.addEl(word);
+       assertTrue(hash.findEl(word));
     }
 
     /**
      * Test of findElement method, of class HashTable.
      */
     @Test
-    public void testFindElement() {
+    public void testFindEl() {
         HashFunction1 function = new HashFunction1();
-        HashTable hash = new HashTable(function);
+        HashTable hash = new HashTable();
+        hash.setHashFunction(function);
         String word = "ok";
-        Assert.assertEquals(false, hash.findElement(word));
+        Assert.assertEquals(false, hash.findEl(word));
+        HashFunction2 function2 = new HashFunction2();
+        hash.setHashFunction(function2);
+        hash.addEl(word);
+        assertTrue(hash.findEl(word)); 
     }
 }

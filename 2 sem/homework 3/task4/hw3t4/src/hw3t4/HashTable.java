@@ -3,16 +3,15 @@ package hw3t4;
 
 public class HashTable {
     
-    public HashTable(InterfaceOfHashFunction hashFunction) {
+    public HashTable() {
         this.hashTable = new List[hashLength];
         for (int i = 0; i < hashLength; i++)
             hashTable[i] = new List();
-        this.hashFunction = hashFunction;
     }
     
     /**
      * Добавление элемента в хэш-таблицу
-     * @param word 
+     * @param word значение элемента, который нужно добавить
      */
     public void addEl(String word) {
         int index = hashFunction.hashFunction(word, hashLength);
@@ -21,7 +20,7 @@ public class HashTable {
     
     /**
      * Удаление элемента из хэш-таблицы
-     * @param word
+     * @param word значение элемента, который нужно удалить
      */
     public void delEl(String word) {
         int index = hashFunction.hashFunction(word, hashLength);
@@ -35,12 +34,16 @@ public class HashTable {
     
     /**
      * Проверка на существование элемента в хэш-таблице
-     * @param word
+     * @param word значение элемента, который нужно проверить на существование в хэш-таблице
      * @return true - элемент существует, false - элемента нет
      */
-    public boolean findElement(String word) {
+    public boolean findEl(String word) {
         int index = hashFunction.hashFunction(word, hashLength);
         return hashTable[index].findElement(word);
+    }
+    
+    public void setHashFunction(InterfaceOfHashFunction hashFunction) {
+        this.hashFunction = hashFunction;
     }
     
     private int hashLength = 40;
