@@ -131,6 +131,22 @@ public class List {
 	    System.out.println();
 	}
     }
+    
+    /**
+     * Проверка на принадлежность элемента с данным значением списку
+     * @param value значение элемента
+     * @return true, если элемент есть в списке, false - иначе
+     */
+    public boolean ElementExists(int value) {
+    ListElement temp = head;
+        while (temp != null) {
+            if (temp.getValue() == value)
+                return true;
+            else
+                temp = temp.getNext();
+        }
+        return false;
+    }
 	
     /**
      * 
