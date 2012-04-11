@@ -9,11 +9,10 @@ public class Set<T> {
     /**
      * Add element to set
      * @param value value to add
-     * @throws ElementExistsException throws exception if element already exists in set
      */
-    public void addElement(T value) throws ElementExistsException {
+    public void addElement(T value) {
         if (elementExists(value))
-            throw new ElementExistsException();
+            return;
         else {
             if (isEmpty()) {
                 SetElement newEl = new SetElement(value, null);
@@ -65,38 +64,38 @@ public class Set<T> {
     
     /**
      * Intersection of two sets
-     * @param set1 first set
-     * @param set2 second set
-     * @param result intercestion
-     * @throws ElementExistsException throws exception if element already exists in set
+     * @param secondSet second Set
+     * @return intersection ot sets
      */
-    public void intersection(Set set1, Set set2, Set result) throws ElementExistsException {
-        SetElement cur = set1.first;
+    public Set<T> intersection(Set<T> secondSet) {
+        Set<T> result = new Set<T>();
+        SetElement cur = first;
         while (cur != null) {
-            if (set2.elementExists(cur.value))
-                    result.addElement(cur.value);
+            if (secondSet.elementExists(cur.value))
+                result.addElement(cur.value);
             cur = cur.next;
-        }   
+        }
+        return result;
     }
     
     /**
      * Association of two sets
-     * @param set1 first set
-     * @param set2 second set
-     * @param result association
-     * @throws ElementExistsException throws exception if element already exists in set
+     * @param secondSet second set
+     * @return result association
      */
-    public void association(Set set1, Set set2, Set result) throws ElementExistsException {
-        SetElement cur = set1.first;
+    public Set<T> association(Set<T> secondSet) {
+        Set<T> result = new Set<T>();
+        SetElement cur = first;
         while (cur != null) {
             result.addElement(cur.value);
             cur = cur.next;
         }
-        cur = set2.first;
+        cur = secondSet.first;
         while (cur != null) {
             result.addElement(cur.value);
             cur = cur.next;
         }
+        return result;
     }
     
     /**

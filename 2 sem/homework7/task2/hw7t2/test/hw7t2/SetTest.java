@@ -27,8 +27,8 @@ public class SetTest {
     /**
      * Test of addElement method, of class Set.
      */
-    @Test(expected=ElementExistsException.class)
-    public void testAddElement() throws Exception {
+    @Test
+    public void testAddElement(){
         Set<String> set = new Set<String>();
         set.addElement("m");
         set.addElement("h");
@@ -57,9 +57,7 @@ public class SetTest {
     public void testElementExists() {
         Set<Integer> set = new Set<Integer>();
         assertFalse(set.elementExists(1));
-        try {
-            set.addElement(1);
-        } catch (ElementExistsException ex) {}
+        set.addElement(1);
         assertTrue(set.elementExists(1));
     }
 
@@ -67,35 +65,31 @@ public class SetTest {
      * Test of intersection method, of class Set.
      */
     @Test
-    public void testIntersection() throws Exception {
+    public void testIntersection() {
         Set<Integer> set1 = new Set<Integer>();
         Set<Integer> set2 = new Set<Integer>();
         set1.addElement(1);
         set1.addElement(2);
         set2.addElement(2);
         set2.addElement(3);
-        Set<Integer> set3 = new Set<Integer>();
-        set3.intersection(set1, set2, set3);
-        assertTrue(set3.elementExists(2));
-        assertFalse(set3.elementExists(3));
+        assertTrue(set1.intersection(set2).elementExists(2));
+        assertFalse(set1.intersection(set2).elementExists(3));
     }
 
     /**
      * Test of association method, of class Set.
      */
-    @Test(expected=ElementExistsException.class)
-    public void testAssociation() throws Exception {
+    @Test
+    public void testAssociation(){
         Set<Integer> set1 = new Set<Integer>();
         Set<Integer> set2 = new Set<Integer>();
         set1.addElement(1);
         set1.addElement(2);
         set2.addElement(2);
         set2.addElement(3);
-        Set<Integer> set3 = new Set<Integer>();
-        set3.association(set1, set2, set3);
-        assertTrue(set3.elementExists(1));
-        assertTrue(set3.elementExists(2));
-        assertTrue(set3.elementExists(3));
+        assertTrue(set1.association(set2).elementExists(1));
+        assertTrue(set1.association(set2).elementExists(2));
+        assertTrue(set1.association(set2).elementExists(3));
     }
 
     /**
@@ -105,9 +99,7 @@ public class SetTest {
     public void testIsEmpty() {
         Set<Integer> set = new Set<Integer>();
         assertTrue(set.isEmpty());
-        try {
-            set.addElement(0);
-        } catch (ElementExistsException ex) {}
+        set.addElement(0);
         assertFalse(set.isEmpty());
     }
 
