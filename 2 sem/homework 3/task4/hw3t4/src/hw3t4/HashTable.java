@@ -38,8 +38,11 @@ public class HashTable {
      * @return true - элемент существует, false - элемента нет
      */
     public boolean findEl(String word) {
-        int index = hashFunction.hashFunction(word, hashLength);
-        return hashTable[index].findElement(word);
+        for (int index = 0; index < hashLength; index++) {
+            if (hashTable[index].findElement(word))
+                return true;
+        }
+        return false;
     }
     
     public void setHashFunction(InterfaceOfHashFunction hashFunction) {

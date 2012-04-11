@@ -74,4 +74,23 @@ public class HashTableTest {
         hash.addEl(word);
         assertTrue(hash.findEl(word)); 
     }
+    
+    /**
+     * Test of setHashFunction method, of class HashTable
+     */
+    @Test
+    public void testSetHashFunction() {
+        HashFunction1 function = new HashFunction1();
+        HashTable hash = new HashTable();
+        hash.setHashFunction(function);
+        hash.addEl("ok");
+        Assert.assertEquals(true, hash.findEl("ok"));
+        HashFunction2 function2 = new HashFunction2();
+        hash.setHashFunction(function2);
+        assertTrue(hash.findEl("ok"));
+        hash.addEl("1");
+        assertTrue(hash.findEl("1"));
+        hash.setHashFunction(function);
+        assertTrue(hash.findEl("1"));     
+    }
 }
