@@ -3,7 +3,7 @@ package hw7t1;
 import java.util.Iterator;
 import java.util.Collection;
 
-public class List<T> {
+public class List<T> implements Iterable<T> {
     
     public List() {
         count = 0;
@@ -179,7 +179,8 @@ public class List<T> {
 	return position.getValue();
     }
     
-    public Iterator<T> iterator() {
+    @Override
+    public ListIterator<T> iterator() {
         return new MyIterator();
     }
     
@@ -207,7 +208,7 @@ public class List<T> {
             this.next = pointer;
         }
     	
-        public ListElement(T value, ListElement pointer) {
+        private ListElement(T value, ListElement pointer) {
             this.value = value;
             this.next = pointer;
         }
@@ -217,7 +218,7 @@ public class List<T> {
         private ListElement next;
     }
     
-    public class MyIterator<T> implements Iterator<T> {
+    public class MyIterator<T> implements ListIterator<T> {
         
         public MyIterator() {
             next = null;
@@ -266,4 +267,5 @@ public class List<T> {
         
         private ListElement prev;
     }
+    
 }
