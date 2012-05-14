@@ -38,14 +38,30 @@ public class HashTable {
      * @return true - элемент существует, false - элемента нет
      */
     public boolean findEl(String word) {
-        for (int index = 0; index < hashLength; index++) {
-            if (hashTable[index].findElement(word))
-                return true;
-        }
-        return false;
+        int index = hashFunction.hashFunction(word, hashLength);
+        return hashTable[index].findElement(word);
     }
     
+    
+    /**
+     * Изменение хэш-функции
+     * @param hashFunction хэш-функция
+     */
     public void setHashFunction(InterfaceOfHashFunction hashFunction) {
+        List[] newHashTable = new List[hashLength];
+        for (int i = 0; i < hashLength; i++)
+            newHashTable[i] = new List();
+        for (int i = 0; i < hashLength; i++) {
+            ListElement position = hashTable[i].firstPosition();
+            while (position != null) {
+                String word = hashTable[i].getValue(position);
+                int index = hashFunction.hashFunction(word, hashLength);
+                newHashTable[index].addToEnd(word);
+                position = hashTable[i].nextPosition(position);
+            }
+        }
+        for (int i = 0; i < hashLength; i++)
+            hashTable[i] = newHashTable[i];
         this.hashFunction = hashFunction;
     }
     

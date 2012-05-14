@@ -1,8 +1,5 @@
 package hw7t1;
 
-import java.util.Iterator;
-import java.util.Collection;
-
 public class List<T> implements Iterable<T> {
     
     public List() {
@@ -115,6 +112,7 @@ public class List<T> implements Iterable<T> {
 	
     /**
      * Длина списка
+     * @return длину списка
      */
     public int lengthOfList() {
 	return count;
@@ -179,6 +177,16 @@ public class List<T> implements Iterable<T> {
 	return position.getValue();
     }
     
+    public boolean exist(T value) {
+        ListElement temp = head;
+        while (temp != null) {
+            if (temp.getValue() == value)
+                return true;
+            temp = temp.getNext();
+        }
+        return false;
+    }
+    
     @Override
     public ListIterator<T> iterator() {
         return new MyIterator();
@@ -190,7 +198,7 @@ public class List<T> implements Iterable<T> {
 	
     private int count;
     
-    private class ListElement {
+    public class ListElement {
     
         public T getValue() {
             return value;
@@ -208,7 +216,7 @@ public class List<T> implements Iterable<T> {
             this.next = pointer;
         }
     	
-        private ListElement(T value, ListElement pointer) {
+        public ListElement(T value, ListElement pointer) {
             this.value = value;
             this.next = pointer;
         }
@@ -218,7 +226,7 @@ public class List<T> implements Iterable<T> {
         private ListElement next;
     }
     
-    public class MyIterator<T> implements ListIterator<T> {
+    public class MyIterator implements ListIterator<T> {
         
         public MyIterator() {
             next = null;
@@ -239,7 +247,7 @@ public class List<T> implements Iterable<T> {
             if (cur == null && prev == null) {
                 cur = head;
                 next = cur.getNext();
-                return (T) cur.getValue();
+                return cur.getValue();
             }
             else if (next == null)
                 return null;
@@ -247,7 +255,7 @@ public class List<T> implements Iterable<T> {
                 prev = cur;
                 cur = cur.getNext();
                 next = cur.getNext();
-                return (T) cur.getValue();
+                return cur.getValue();
             }
         }
 
@@ -267,5 +275,4 @@ public class List<T> implements Iterable<T> {
         
         private ListElement prev;
     }
-    
 }
