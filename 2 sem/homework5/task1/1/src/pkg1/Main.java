@@ -12,7 +12,22 @@ public class Main {
             str += in.next();
         in.close();
         StringBuffer s = new StringBuffer(str);
-        TreeElement node = new Operation(s);
+        TreeElement node = null;
+        s.deleteCharAt(0);
+        switch (s.charAt(1)) {
+            case '+':
+                node = new Addition(s);
+                break;
+            case '-':
+                node = new Substraction(s);
+                break;
+            case '*':
+                node = new Multiplication(s);
+                break;
+            case '/':
+                node = new Division(s);
+                break;
+        }
         int r = node.calculate(); 
         System.out.println("result = " + r);
         node.print();

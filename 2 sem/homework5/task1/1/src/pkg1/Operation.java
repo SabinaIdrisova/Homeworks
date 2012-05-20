@@ -3,7 +3,6 @@ package pkg1;
 public class Operation  implements TreeElement {
     
     public Operation(StringBuffer str) {
-        this.symbol = str.charAt(1);
         str.delete(0, 2);
         this.left = createTreeElement(str);
         this.right = createTreeElement(str);
@@ -19,8 +18,22 @@ public class Operation  implements TreeElement {
         while (str.charAt(0) == ' ')
             str.deleteCharAt(0);
         TreeElement temp = null;
-        if (str.charAt(0) == '(')
-            temp = new Operation(str);
+        if (str.charAt(0) == '(') {
+            switch (str.charAt(1)) {
+                case '+':
+                    temp = new Addition(str);
+                    break;
+                case '-':
+                    temp = new Substraction(str);
+                    break;
+                case '*':
+                    temp = new Multiplication(str);
+                    break;
+                case '/':
+                    temp = new Division(str);
+                    break;
+            }
+        }
         else
         {
             temp = new Digit(str.charAt(0));
@@ -29,23 +42,10 @@ public class Operation  implements TreeElement {
         return temp;
     }
     
-    /**
-     * Calculate value of node
-     * @return value of Operation node
-     */
     @Override
     public int calculate() {
-        if (this.symbol == '+')
-            return this.left.calculate() + this.right.calculate();
-        if (this.symbol == '-')
-            return this.left.calculate() - this.right.calculate();
-        if (this.symbol == '*')
-            return this.left.calculate() * this.right.calculate();
-        if (this.symbol == '/')
-            return this.left.calculate() / this.right.calculate();
         return 0;
     }
-    
     /**
      * Print itself
      */
@@ -57,9 +57,9 @@ public class Operation  implements TreeElement {
         System.out.print(")");
     }
     
-    private char symbol;
+    protected char symbol;
     
-    private TreeElement left;
+    protected TreeElement left;
     
-    private TreeElement right;
+    protected TreeElement right;
 }
