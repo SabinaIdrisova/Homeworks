@@ -1,0 +1,17 @@
+Файл MyPriorityQueue.java:
+1.private-класс ListElement перенести вниз
+2.ListElement переименовать в QueueElement
+3.В конструктое QueueElement переименовать v в val, p в priority
+3.Переменную l в методе enqueue переименовать в cur
+4.В комментарии указано, что меньшее число имеет высший приоритет, в enqueue в условии цикла while поменять ">" на "<"
+5.В методе dequeue условие if (head == null) поменять на if (head.getNext() == null)
+6.RuntimeException поменять на EmptyQueueException
+7.Изменить комментарии на javadoc
+
+Файл Main.java:
+1.int поменять на Integer
+
+Файл MyPriorityQueueTest.java:
+1.Убрать System.out.println("queue") из тестов
+2.В тесте метода enqueue изменить одно из добавляемых значений
+3.testQueueException() заставить ожидать исключения, добавив (expected=EmptyQueueException.class). try-catch убрать.
