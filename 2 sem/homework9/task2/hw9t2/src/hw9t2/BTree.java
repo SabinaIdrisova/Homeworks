@@ -145,7 +145,7 @@ public class BTree {
      
      public static class Node {
          
-         private Node(Node parent, int maxKeySize, int maxChildrenSize) {
+         public Node(Node parent, int maxKeySize, int maxChildrenSize) {
              this.parent = parent;
              this.keys =  new ArrayList<Entry>(maxKeySize + 1);
              this.keysSize = 0;
@@ -157,11 +157,11 @@ public class BTree {
              return keys.get(index).key;
          }
          
-         private int getValue(int index) {
+         public int getValue(int index) {
              return  keys.get(index).value;
          }
 
-         private boolean exist(int key) {
+         public boolean exist(int key) {
              for (int i = 0; i < keysSize; i++) {
                  if (keys.get(i).key == key)
                      return true;;
@@ -169,7 +169,7 @@ public class BTree {
              return false;
          }
          
-         private int findValue(int key) {
+         public int findValue(int key) {
              for (int i = 0; i < keysSize; i++) {
                  if (keys.get(i).key == key) 
                      return keys.get(i).value;;
@@ -177,7 +177,7 @@ public class BTree {
              return 0;
          }
          
-         private void addEl(int key, int value) {
+         public void addEl(int key, int value) {
              keys.add(new Entry(key, value));
              keysSize++;
              for (int i = 0; i < keys.size() - 1; i++) {
@@ -191,7 +191,7 @@ public class BTree {
              }
          } 
          
-         private int numberOfKeys() {
+         public int numberOfKeys() {
              return keysSize;
          }
 
@@ -201,13 +201,13 @@ public class BTree {
              return children[index];
          }
         
-         private boolean addChild(Node child) {
+         public boolean addChild(Node child) {
              child.parent = this;
              children[childrenSize++] = child;
              return true;
          }
         
-         private boolean removeChild(Node child) {
+         public boolean removeChild(Node child) {
              boolean found = false;
              if (childrenSize == 0) 
                  return found;
@@ -225,7 +225,7 @@ public class BTree {
              return found;
          }
         
-         private int numberOfChildren() {
+         public int numberOfChildren() {
              return childrenSize;
          }
            
