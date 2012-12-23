@@ -20,6 +20,14 @@ public class Network {
     }
     
     /**
+     * get notInfectedComputers in network
+     * @return notInfectedComputers
+     */
+    public ArrayList<Computer> getNotInfectedComputers() {
+        return notInfectedComputers;
+    }
+    
+    /**
      * Start networking
      */
     public void startWorking() {
