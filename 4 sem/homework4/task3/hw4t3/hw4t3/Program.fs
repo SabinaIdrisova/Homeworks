@@ -10,27 +10,21 @@ let addNewRecord contactList =
     let contactList = name :: number :: contactList
     contactList
 
-let findByName contactList = 
-    printf "Введите имя "
-    let name = Console.ReadLine()
+let findRecord contactList (findByName: bool) = 
+    if findByName then
+        printf "Введите имя "
+    else printf "Введите номер "
+    let record = Console.ReadLine()
     let array = List.toArray contactList
-    let rec find name (array: string[]) i = 
+    let rec find record (array: string[]) i = 
         if i > 0 then
-            if name = array.[i] then printfn "Номер: %A" array.[i + 1]
-            else find name array (i - 1)
+            if record = array.[i] then 
+                if findByName then
+                    printfn "Номер: %A" array.[i + 1]
+                else printfn "Имя: %A" array.[i - 1]
+            else find record array (i - 1)
          else printfn "Контакт не найден"    
-    find name array (array.Length - 1)
-
-let findByNumber contactList = 
-    printf "Введите номер "
-    let number = Console.ReadLine()
-    let array = List.toArray contactList
-    let rec find number (array: string[]) i = 
-        if i > 0 then
-            if number = array.[i] then printfn "Имя: %A" array.[i - 1]
-            else find number array (i - 1)
-        else printfn "Контакт не найден"   
-    find number array (array.Length - 1)
+    find record array (array.Length - 1)
 
 let saveData contactList = 
     let contact = List.toArray contactList
@@ -40,12 +34,14 @@ let saveData contactList =
 
 let readLines file =
     seq { use inp = File.OpenText file in
-    while not(inp.EndOfStream) do yield (inp.ReadLine())
+          while not(inp.EndOfStream) do yield (inp.ReadLine())
         }
 
 let readData file = 
-    readLines file |> Seq.toArray |> printfn "\n %A"
-
+    try 
+        readLines file |> printfn "\n %A"
+    with 
+    | exn -> printfn "Ошибка! %s" exn.Message
 
 let rec phoneBook contactList = 
     printfn "Выберите опреацию:"
@@ -55,9 +51,9 @@ let rec phoneBook contactList =
         match operation with 
             | "1" -> addNewRecord contactList
 
-            | "2" -> findByName contactList
+            | "2" -> findRecord contactList true
                      contactList
-            | "3" -> findByNumber contactList
+            | "3" -> findRecord contactList false
                      contactList
             | "4" -> saveData contactList
                      contactList
