@@ -1,47 +1,81 @@
-﻿type Tree<'a when 'a : comparison> =
-    | Tree of 'a * 'a Tree * 'a Tree
-    | Nil
+﻿open System.Collections.Generic
 
-    member tree.AddValue(value: 'a) =
-        match tree with
-        | Nil -> Tree(value, Nil, Nil)
-        | Tree(data, left, right) when data < value -> Tree(data, left, right.AddValue(value))
-        | Tree(data, left, right) -> Tree(data, left.AddValue(value), right)
+type Node<'a when 'a : comparison> (value : 'a) =
+    let mutable left : Node<'a> option = None
+    let mutable right : Node<'a> option = None
+    member this.getLeft = left
+    member this.getRight = right
+    member this.getValue = value
+    member this.SetLeft value = left <- Some(Node<'a>(value))
+    member this.SetRight value = right <- Some(Node<'a>(value))
 
-    member tree.Split() =
-        match tree with
-        | Tree(data, left, right) -> left.Split() @ [data] @ right.Split()
-        | Nil -> []
+type Enumerator<'a when 'a : comparison>(node: Node<'a> option) =
+    let mutable current = node
+    let stack = Stack<Node<'a> option>()
+    do stack.Push(node)
 
-    member tree.ElementExists(value: 'a) =
-        match tree with
-        | Nil -> printfn " Element doesn't exist"
-        | Tree(data, left, right) when data = value -> printfn " Element exists"
-        | Tree(data, left, right) when data < value -> right.ElementExists(value)
-        | Tree(data, left, right) when data > value -> left.ElementExists(value)
+    interface IEnumerator<Node<'a>> with
+
+        member this.MoveNext() =
+            if stack.Count = 0 then
+                false
+            else
+                current <- stack.Pop()
+                if current.Value.getRight <> None then
+                    stack.Push current.Value.getRight
+                if current.Value.getLeft <> None then
+                    stack.Push current.Value.getLeft
+                true
+        member this.Reset() =  current <- node
+        member this.Dispose() = ()
+        member this.Current = current.Value
+        member this.get_Current() = current :> obj
+
+type Tree<'a when 'a : comparison>() =
+    let mutable root : Node<'a> option = None    
+
+    member this.getRoot = root
+
+    member tris.addValue(value: 'a) =
+        if root = None then
+            root <- Some(Node<'a>(value))
+        else 
+            let rec addElement (node: Node<'a>) = 
+                if value < node.getValue then
+                    if node.getLeft = None then
+                        node.SetLeft value
+                    else addElement node.getLeft.Value
+                else
+                    if value > node.getValue then
+                        if node.getRight = None then
+                            node.SetRight value
+                        else addElement node.getRight.Value
+            addElement root.Value
+
+    member this.elementExists(value: 'a) =
+        let rec findElement (node: Node<'a> option) = 
+            if node <> None then
+                if value = node.Value.getValue then true
+                else if value < node.Value.getValue && node.Value.getLeft <> None then
+                    findElement node.Value.getLeft
+                else if value > node.Value.getValue && node.Value.getRight <> None then
+                    findElement node.Value.getRight
+                else false
+            else false
+        findElement root
         
-    member tree.Print() = 
-        match tree with
-        | Tree(data, left, right) -> printf " %A" data
-                                     left.Print()
-                                     right.Print()
-        | Nil -> () 
+    interface IEnumerable<Node<'a>> with
+        member this.GetEnumerator() =
+            new Enumerator<'a>(root) :> IEnumerator<Node<'a>>
+        member this.GetEnumerator() =
+            new Enumerator<'a>(root) :> System.Collections.IEnumerator
 
-    member tree.Iterator(func) =
-        let list = tree.Split()
-        let iterList = List.iter(func) list
-        printfn ""
 
-let mutable tree = Tree(1, Nil, Nil)
-tree <- tree.AddValue(1)
-tree <- tree.AddValue(2)
-tree <- tree.AddValue(0)
-tree <- tree.AddValue(8)
-tree.ElementExists(2)
-tree.ElementExists(11)
-tree.Print()
-
-let mutable acc = 0
-tree.Iterator(fun x-> acc <- acc + x)
-printfn " %A" acc
-
+let tree = Tree<int>()
+tree.addValue 1
+tree.addValue 2
+tree.addValue 0
+tree.addValue 8
+printfn "%A" <| tree.elementExists 2
+printfn "%A" <| tree.elementExists 11
+for i in tree do printfn "%A" (i.getValue * 2)
