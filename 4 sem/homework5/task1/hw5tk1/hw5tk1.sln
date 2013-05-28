@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "hw5tk1", "hw5tk1\hw5tk1.fsproj", "{046237A4-036A-440B-B834-58F26136A4BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{046237A4-036A-440B-B834-58F26136A4BB}.Debug|x86.ActiveCfg = Debug|x86
+		{046237A4-036A-440B-B834-58F26136A4BB}.Debug|x86.Build.0 = Debug|x86
+		{046237A4-036A-440B-B834-58F26136A4BB}.Release|x86.ActiveCfg = Release|x86
+		{046237A4-036A-440B-B834-58F26136A4BB}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
