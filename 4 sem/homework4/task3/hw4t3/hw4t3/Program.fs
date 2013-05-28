@@ -17,7 +17,7 @@ let findRecord contactList (findByName: bool) =
     let record = Console.ReadLine()
     let array = List.toArray contactList
     let rec find record (array: string[]) i = 
-        if i > 0 then
+        if i >= 0 then
             if record = array.[i] then 
                 if findByName then
                     printfn "Номер: %A" array.[i + 1]
